@@ -21,7 +21,9 @@ app.get("/todos", (req, res) => {
     });
 });
 
-
+app.post("/todo", (req, res) => {
+    console.log(req.body);
+})
 
 app.listen(port, () => {
     console.log(`Listening to port ${port}, App Ready !`);
@@ -35,7 +37,7 @@ const todos = [
     },
     {
         id: 2,
-        title: "Push lagi",
+        title: "Belajar Node.js",
         isDone: false,
     },
 ];
