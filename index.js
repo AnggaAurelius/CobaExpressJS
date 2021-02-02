@@ -54,6 +54,20 @@ app.patch("/todo/:id", (req, res) =>{
         },
     })
 })
+
+app.delete("/todo/:id",(req,res) => {
+    const { id } = req.params;
+
+    todos = todos.filter((todo) => todo.id != id); //mengirim id yang tidak dipilih
+    res.send({
+        message: "Response Succes",
+        data: {
+            todos,
+
+        },
+    })
+});
+
 app.listen(port, () => {
     console.log(`Listening to port ${port}, App Ready !`);
 });
