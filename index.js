@@ -35,7 +35,7 @@ const todos = [
     },
     {
         id: 2,
-        title: "Belajar Node.js",
+        title: "Push lagi",
         isDone: false,
     },
 ];
