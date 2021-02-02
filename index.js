@@ -34,6 +34,26 @@ app.post("/todo", (req, res) => {
     })
 })
 
+app.patch("/todo/:id", (req, res) =>{
+    const { id } = req.params;
+    const editTodo = req.body; //data dari postman / user
+
+    todos = todos.map(todo => 
+        todo.id == id
+        ? {
+        title: editTodo.title ? editTodo.title : todo.title,
+        isDone: editTodo.isDone ? editTodo : todo.isDone,
+        }
+    : todo
+    );
+    res.send({
+        message: "Response Succes",
+        data: {
+            todos,
+
+        },
+    })
+})
 app.listen(port, () => {
     console.log(`Listening to port ${port}, App Ready !`);
 });
