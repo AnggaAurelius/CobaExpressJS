@@ -22,14 +22,23 @@ app.get("/todos", (req, res) => {
 });
 
 app.post("/todo", (req, res) => {
-    console.log(req.body);
+    const todo = req.body;
+
+    todos = [...todos, todo];
+    res.send({
+        message: "Response Succes",
+        data: {
+            todos,
+
+        },
+    })
 })
 
 app.listen(port, () => {
     console.log(`Listening to port ${port}, App Ready !`);
 });
 
-const todos = [
+let todos = [
     {
         id: 1,
         title: "Belajar express.js",
