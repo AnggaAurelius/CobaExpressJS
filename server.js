@@ -2,10 +2,12 @@ const express = require ('express');
 const bodyParser = require('body-parser');
 
 const app = express();
+const router = require("./src/routes");
 
 const port = 5000;
 
 app.use(bodyParser.json());
+app.use("/", router);
 
 app.get("/", (request, response) => {
     response.send("Hello Dumbways ok");
@@ -26,7 +28,7 @@ app.post("/todo", (req, res) => {
 
     todos = [...todos, todo];
     res.send({
-        message: "Response Succes",
+        message: "Response Suc",
         data: {
             todos,
 
