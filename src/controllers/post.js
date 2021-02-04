@@ -66,3 +66,45 @@ exports.addPost = async (req, res) => {
     });
   }
 };
+
+exports.editPost = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const post = await Post.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!post) {
+      return res.send({
+        message: `Post with id ${id} Not Existed`,
+      });
+    }
+
+    await Post.update(req.body, {
+      where: {
+        id,
+      },
+    });
+
+    const postUpdated = await Post.findOne({
+      where: {
+        id,
+      },
+    });
+
+    res.send({
+      message: `Posts with id ${id} Successfully Updated`,
+      data: {
+        post: postUpdated,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      message: "Server Error",
+    });
+  }
+};
