@@ -48,3 +48,21 @@ exports.getPostsById = async (req, res) => {
     });
   }
 };
+
+exports.addPost = async (req, res) => {
+  try {
+    const post = await Post.create(req.body);
+
+    res.send({
+      message: "Posts Successfully Created",
+      data: {
+        post,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      message: "Server Error",
+    });
+  }
+};

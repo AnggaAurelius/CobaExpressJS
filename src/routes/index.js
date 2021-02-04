@@ -8,7 +8,7 @@ const {
     deleteTodo,
 } = require("../controllers/todos");
 
-const { getPosts, getPostsById } = require("../controllers/post");
+const { getPosts, getPostsById,addPost } = require("../controllers/post");
 
 router.get("/todos", getTodos);
 router.post("/todo", addTodo);
@@ -17,5 +17,6 @@ router.delete("/todo/:id", deleteTodo);
 
 router.get("/posts", getPosts);
 router.get("/post/:id", getPostsById);
+router.post("/post", addPost);
 
 module.exports = router;
