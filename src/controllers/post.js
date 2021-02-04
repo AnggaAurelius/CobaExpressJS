@@ -4,7 +4,7 @@ exports.getPosts = async (req, res) => {
     try{
         const posts = await Post.findAll();
         
-        return res.send({
+        res.send({
             message: "Post Succesfully Retrives",
             data: {
                 posts,
@@ -12,17 +12,39 @@ exports.getPosts = async (req, res) => {
         });
     } catch (err){
         console.log(err);
-        return res.status(500).send({
+        res.status(500).send({
             message: "Server Error",
         })
 
     }
 };
 
-// exports.functionName = async (req, res) => {
-//     try {
+exports.getPostsById = async (req, res) => {
+  try {
+    const { id } = req.params;
 
-//     } catch (err) {
+    const post = await Post.findOne({
+      where: {
+        id,
+      },
+    });
 
-//     }
-// }
+    if (!post) {
+      return res.send({
+        message: `Post with id ${id} Not Existed`,
+      });
+    }
+
+    res.send({
+      message: `Post with id ${id} Successfully Retrieved`,
+      data: {
+        post,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      message: "Server Error",
+    });
+  }
+};
