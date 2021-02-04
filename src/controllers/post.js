@@ -108,3 +108,36 @@ exports.editPost = async (req, res) => {
     });
   }
 };
+
+exports.deletePost = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const post = await Post.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!post) {
+      return res.send({
+        message: `Post with id ${id} Not Existed`,
+      });
+    }
+
+    await Post.destroy({
+      where: {
+        id,
+      },
+    });
+
+    res.send({
+      message: `Posts with id ${id} Successfully Deleted`,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      message: "Server Error",
+    });
+  }
+};
