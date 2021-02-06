@@ -20,6 +20,11 @@ const {
     getEmails
 } = require("../controllers/employeeEmail");
 
+const { 
+    getProgrammers,
+    getSkills
+} = require("../controllers/programmerSkill");
+
 router.get("/todos", getTodos);
 router.post("/todo", addTodo);
 router.patch("/todo/:id", editTodo);
@@ -33,5 +38,9 @@ router.delete("/post/:id", deletePost);
 
 router.get("/employees", getEmployees);
 router.get("/emails", getEmails);
+
+// relasi One-to-Many || HasMany & BelongsTo
+router.get("/programmers", getProgrammers);
+router.get("/skills", getSkills);
 
 module.exports = router;
