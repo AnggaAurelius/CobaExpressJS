@@ -26,7 +26,8 @@ const {
 } = require("../controllers/programmerSkill");
 
 const { 
-    getBooks
+    getBooks,
+    getAuthors
 } = require("../controllers/authorBook");
 
 router.get("/todos", getTodos);
@@ -49,5 +50,6 @@ router.get("/skills", getSkills);
 
 // relasi Many-to-Many || BelongsT 
 router.get("/books", getBooks);
+router.get("/authors", getAuthors);
 
 module.exports = router;
