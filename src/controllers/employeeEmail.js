@@ -5,6 +5,12 @@ exports.getEmployees = async (req, res) => {
         const employees = await Employee.findAll({
             include: {
                 model: Email,
+                attributes: {
+                exclude: ["employeeId","createdAt","updatedAt","EmployeeId"],
+                }
+            },
+            attributes: {
+                exclude: ["emailId","createdAt","updatedAt"],
             }
         });
         
