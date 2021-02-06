@@ -15,7 +15,9 @@ const { getPosts,
     deletePost 
 } = require("../controllers/post");
 
-const { getEmployees
+const { 
+    getEmployees,
+    getEmails
 } = require("../controllers/employeeEmail");
 
 router.get("/todos", getTodos);
@@ -30,5 +32,6 @@ router.patch("/post/:id", editPost);
 router.delete("/post/:id", deletePost);
 
 router.get("/employees", getEmployees);
+router.get("/emails", getEmails);
 
 module.exports = router;

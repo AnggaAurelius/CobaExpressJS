@@ -29,3 +29,33 @@ exports.getEmployees = async (req, res) => {
 
     }
 };
+
+exports.getEmails = async (req, res) => {
+    try{
+        const emails = await Email.findAll({
+            include: {
+                model: Employee,
+                attributes: {
+                exclude: ["createdAt","updatedAt","emailId"],
+                }
+            },
+            attributes: {
+                exclude: ["employeeId","createdAt","updatedAt","EmployeeId"],
+            }
+        });
+        
+        res.send({
+            status: "success",
+            message: "Employees Succesfully Retrives",
+            data: {
+                emails,
+            },
+        });
+    } catch (err){
+        console.log(err);
+        res.status(500).send({
+            message: "Server Error",
+        })
+
+    }
+};
