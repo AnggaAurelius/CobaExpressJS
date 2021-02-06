@@ -12,6 +12,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       emailId: {
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       createdAt: {
