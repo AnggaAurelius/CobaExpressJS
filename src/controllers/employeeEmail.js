@@ -35,6 +35,7 @@ exports.getEmails = async (req, res) => {
         const emails = await Email.findAll({
             include: {
                 model: Employee,
+                as: "employee",
                 attributes: {
                 exclude: ["createdAt","updatedAt","emailId"],
                 }
