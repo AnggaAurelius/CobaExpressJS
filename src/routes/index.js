@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { authenticated } = require("../middlewares/auth");
 const { isAdmin } = require("../middlewares/checkRole");
+const { uploadFile } = require("../middlewares/upload");
 
 const {
     getTodos,
@@ -36,6 +37,10 @@ const {
     register, login
 } = require("../controllers/auth");
 
+const { 
+    addImage
+} = require("../controllers/upload");
+
 router.get("/todos", authenticated, getTodos);
 router.post("/todo", addTodo);
 router.patch("/todo/:id", editTodo);
@@ -61,5 +66,8 @@ router.get("/authors", getAuthors);
 // auth
 router.post("/register", register);
 router.post("/login", login);
+
+//testing upload
+router.post("/upload-gallery", uploadFile("imageFile", "videoFile"), addImage);
 
 module.exports = router;
