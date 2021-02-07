@@ -85,8 +85,8 @@ exports.login = async (req, res) => {
             },
         });
 
-        if (!user) returnres.status(400).send({
-            message: "Email not registered yet"
+        if (!user) return res.status(400).send({
+            message: "Your Credentials is not valid"
         });
 
         const validPass = await bcrypt.compare(password, user.password);
