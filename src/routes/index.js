@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { authenticated } = require("../middlewares/auth");
 
 const {
     getTodos,
@@ -30,7 +31,7 @@ const {
     getAuthors
 } = require("../controllers/authorBook");
 
-router.get("/todos", getTodos);
+router.get("/todos", authenticated, getTodos);
 router.post("/todo", addTodo);
 router.patch("/todo/:id", editTodo);
 router.delete("/todo/:id", deleteTodo);
