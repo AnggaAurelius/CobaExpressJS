@@ -40,7 +40,7 @@ router.post("/todo", addTodo);
 router.patch("/todo/:id", editTodo);
 router.delete("/todo/:id", deleteTodo);
 
-router.get("/posts", getPosts);
+router.get("/posts", authenticated, getPosts);
 router.get("/post/:id", getPostsById);
 router.post("/post", addPost);
 router.patch("/post/:id", editPost);

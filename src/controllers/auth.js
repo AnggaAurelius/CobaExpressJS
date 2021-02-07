@@ -26,8 +26,8 @@ exports.register = async (req, res) => {
             },
         });
         if (checkEmail)
-        return res.status(400).send({
-            message: "Email already Registered",
+            return res.status(400).send({
+             message: "Email already Registered",
         })
 
         const hashedStrenght = 10;
@@ -38,7 +38,7 @@ exports.register = async (req, res) => {
             password: hashedPassword,
         });
 
-        const secretKey = "your-secret";
+        const secretKey = "your-secret-key";
         const token = jwt.sign(
             {
             id: user.id
@@ -96,7 +96,7 @@ exports.login = async (req, res) => {
             message: "Your password is not valid",
         })
 
-        const secretKey = "your-secret";
+        const secretKey = "your-secret-key";
         const token = jwt.sign(
             {
             id: user.id
