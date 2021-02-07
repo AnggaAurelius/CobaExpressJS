@@ -6,7 +6,7 @@ const joi = require("joi");
 exports.register = async (req, res) => {
     try {
         const { email, password } = req.body;
-        
+
         const schema = joi.object({
             fullName: joi.string().min(3).required(),
             email: joi.string().email().min(6).required(),
@@ -38,6 +38,64 @@ exports.register = async (req, res) => {
         res.send({
             status: "succes",
             message: "Register Succces",
+            data: {
+                user: {
+                    email,
+                    token, 
+                },
+            },
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({
+            message: "Server Error",
+        });
+    }
+}
+
+exports.login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        
+        const schema = joi.object({
+            email: joi.string().email().min(6).required(),
+            password: joi.string().min(8).required(),
+        });
+
+        const { error } = schema.validate(req.body);
+        if ( error ) 
+            return res.status(400).send({
+                message: error.details[0].message,
+            })
+
+        const user = await User.findOne({
+            where: {
+                email,
+            },
+        });
+
+        if (!user) returnres.status(400).send({
+            message: "Email not registered yet"
+        });
+
+        const validPass = await bcrypt.compare(password, user.password);
+
+        if(!validPass)
+        return res.status(400).send({
+            message: "Your password is not valid",
+        })
+
+        const secretKey = "your-secret";
+        const token = jwt.sign(
+            {
+            id: user.id
+            },
+            secretKey
+        );
+
+        res.send({
+            status: "succes",
+            message: "Login Succcess",
             data: {
                 user: {
                     email,

@@ -32,7 +32,7 @@ const {
 } = require("../controllers/authorBook");
 
 const { 
-    register
+    register, login
 } = require("../controllers/auth");
 
 router.get("/todos", authenticated, getTodos);
@@ -59,5 +59,6 @@ router.get("/authors", getAuthors);
 
 // auth
 router.post("/register", register);
+router.post("/login", login);
 
 module.exports = router;
