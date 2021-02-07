@@ -11,11 +11,12 @@ exports.register = async (req, res) => {
             password: joi.string().min(8).required(),
         });
 
-        const response = schema.validate(req.body);
+        const { error } = schema.validate(req.body);
 
-        res.send({
-            response,
-        });
+        if ( error ) 
+            return res.status(400).send({
+                error,
+            })
     } catch (err) {
         console.log(err);
         res.status(500).send({
