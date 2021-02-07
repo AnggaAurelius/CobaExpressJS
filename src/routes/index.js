@@ -31,6 +31,10 @@ const {
     getAuthors
 } = require("../controllers/authorBook");
 
+const { 
+    register
+} = require("../controllers/auth");
+
 router.get("/todos", authenticated, getTodos);
 router.post("/todo", addTodo);
 router.patch("/todo/:id", editTodo);
@@ -52,5 +56,8 @@ router.get("/skills", getSkills);
 // relasi Many-to-Many || BelongsT 
 router.get("/books", getBooks);
 router.get("/authors", getAuthors);
+
+// auth
+router.post("/register", register);
 
 module.exports = router;
