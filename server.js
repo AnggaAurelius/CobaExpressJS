@@ -7,6 +7,7 @@ const router = require("./src/routes");
 const port = 5000;
 
 app.use(bodyParser.json());
+app.use("/uploads", express.static("uploads"));
 app.use("/api/v1", router);
 
 app.listen(port, () => {
